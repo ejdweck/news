@@ -1,0 +1,10 @@
+/*
+CSS for NewsSource File
+*/
+
+.images {
+    height: 130px;
+    width: auto;
+    padding: 10px;
+    background: black;
+}

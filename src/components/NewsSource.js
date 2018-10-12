@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Button, Panel, Image } from 'react-bootstrap';
+import './NewsSource.css'
 
 class NewsSource extends Component {
 
@@ -56,7 +57,7 @@ class NewsSource extends Component {
         </Panel.Heading>
         <Grid>
           <Col md={3}>
-            <Image src={article.urlToImage} rounded />
+            <Image className="images" src={article.urlToImage} rounded />
           </Col>
           <Col md={3}>
             <Panel.Body>{article.description}</Panel.Body>
@@ -65,11 +66,18 @@ class NewsSource extends Component {
       </Panel>
     );
     const foxArticles = this.state.fox.map((article) =>
-        <Panel bsStyle="warning" key={article.title}>
+        <Panel bsStyle="danger" key={article.title}>
           <Panel.Heading>
             <Panel.Title componentClass="h3">{article.title}</Panel.Title>
           </Panel.Heading>
-          <Panel.Body>{article.description}</Panel.Body>
+          <Grid>
+            <Col md={3}>
+              <Image className="images" src={article.urlToImage} rounded />
+            </Col>
+            <Col md={3}>
+              <Panel.Body>{article.description}</Panel.Body>
+            </Col>
+          </Grid>
         </Panel>
     );
     return (

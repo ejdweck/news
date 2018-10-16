@@ -8,16 +8,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Jumbotron>
-        <h1>Just a Bite</h1>
-        <p>
-          News bites from different sites
-        </p>
-        <p>
-          <Button bsStyle="primary">mission</Button>
-        </p>
-      </Jumbotron>
-      <NewsSource />
+        <Jumbotron>
+          <h1>Just a Bite</h1>
+          <p>
+            News bites from different sites
+          </p>
+          <p>
+            <Button bsStyle="primary">mission</Button>
+          </p>
+        </Jumbotron>
+        <NewsSource />
       </div>
     );
   }

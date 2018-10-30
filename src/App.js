@@ -14,6 +14,9 @@ class App extends Component {
             News bites from different sites
           </p>
           <p>
+            See the difference in media coverage across the different sources in real time
+          </p>
+          <p>
             <Button bsStyle="primary">mission</Button>
           </p>
         </Jumbotron>

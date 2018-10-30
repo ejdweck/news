@@ -1,82 +1,40 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Button, Panel } from 'react-bootstrap';
+import { Formik } from 'formik';
 
 class SearchBar extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { 
-      input: '',
+    this.state = {
+      value: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    // call news api
-    const urlData = {
-      country: 'us',
-      apiKey: 'c477fa4aa1474688a99cb5392449a6fd',
-      sources: 'fox-news, cnn'
-    }
-    const headers = {
-      Accept: 'application/json',
-    }
-    fetch(`https://newsapi.org/v2/top-headlines?sources=${encodeURIComponent(urlData.sources)}&apiKey=${encodeURIComponent(urlData.apiKey)}`, {
-      method: "GET",
-      headers: headers,   
-    })
-      .then((response) => response.json())
-      // set state with data
-      .then((responseJson) => {
-        let i;
-        let foxArticles = [];
-        let cnnArticles = [];
-        console.log(responseJson)
-        for (i = 0; i < responseJson.articles.length; i++) {
-          if (responseJson.articles[i].source.id === 'fox-news') {
-            console.log(responseJson.articles[i].source.id);
-            foxArticles.push(responseJson.articles[i]);
-          } else if (responseJson.articles[i].source.id === 'cnn') {
-            console.log(responseJson.articles[i].source.id);
-            cnnArticles.push(responseJson.articles[i]);
-          }
-        }
-        this.setState({
-          fox: foxArticles,
-          cnn: cnnArticles,
-        })
-      }); 
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
+  handleSubmit(event) {
+    //alert('A name was submitted: ' + this.state.value);
+    console.log('searrrrching form search input')
+    this.props.getNewsArticles(this.state.value);
+    event.preventDefault();
+  }
+  
   render() {
-    const cnnArticles = this.state.cnn.map((article) => 
-      <Panel bsStyle="info" key={article.title}>
-        <Panel.Heading>
-          <Panel.Title componentClass="h3">{article.title}</Panel.Title>
-        </Panel.Heading>
-        <Panel.Body>{article.description}</Panel.Body>
-      </Panel>
-    );
-    const foxArticles = this.state.fox.map((article) =>
-        <Panel bsStyle="warning" key={article.title}>
-          <Panel.Heading>
-            <Panel.Title componentClass="h3">{article.title}</Panel.Title>
-          </Panel.Heading>
-          <Panel.Body>{article.description}</Panel.Body>
-        </Panel>
-    );
+    
     return (
-      <div className="Grid">
-        <Grid>
-          <Row className="show-grid">
-            <Col md={6}>
-              {cnnArticles}
-            </Col>
-            <Col md={6}>
-              {foxArticles}
-            </Col>
-          </Row>
-        </Grid>
-      </div>
+    <div>
+      <h1>My Form</h1>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>    
+    </div>
     );
   }
 }

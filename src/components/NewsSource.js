@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Row, Col, Button, Panel, Image } from 'react-bootstrap';
 import './NewsSource.css'
 import SearchBar from './SearchBar';
+import SourceButton from './SourceButton';
 
 class NewsSource extends Component {
 
@@ -12,7 +13,11 @@ class NewsSource extends Component {
       cnn: [],
       nytimes: [],
       wsj: [],
+      sources: [],
+      sourceOptions: ['cnn', 'fox', 'wsj', 'vox']
     };
+
+    this.addSelectedSource = this.addSelectedSource.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +77,22 @@ class NewsSource extends Component {
       });
   }
 
+  addSelectedSource = (source) => {
+    console.log('ADDING source')
+    this.setState({
+      sources: this.state.sources.concat([source])
+    });
+  }
+  
+  removeSelectedSource = (source) => {
+    console.log('REMOVING source')
+    let sourcesArray = this.state.sources;
+    sourcesArray.splice(sourcesArray.indexOf(source), 1 );
+    this.setState({
+      sources: sourcesArray
+    });
+  }
+
   render() {
     const cnnArticles = this.state.cnn.map((article) =>
       <Panel className="newsStory" bsStyle="primary" key={article.url}>
@@ -121,9 +142,17 @@ class NewsSource extends Component {
         </Row>
       </Panel>
     );
+    const sourceButtons = this.state.sourceOptions.map((source) => 
+      <SourceButton 
+        sourceName={source}
+        addSelectedSource={this.addSelectedSource}
+        removeSelectedSource={this.removeSelectedSource}
+      />
+    );
     return (
       <div >
         <SearchBar getNewsArticles={this.getNewsArticles}/>
+        {sourceButtons}
         <Grid className="container">
           <Col md={3}>
             <h3>CNN</h3>

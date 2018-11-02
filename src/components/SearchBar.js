@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Button, Panel } from 'react-bootstrap';
+import { FormControl, FormGroup, Grid, Row, Col, Button, Panel } from 'react-bootstrap';
 import { Formik } from 'formik';
 
 class SearchBar extends Component {
@@ -27,13 +27,24 @@ class SearchBar extends Component {
     
     return (
     <div>
-      <h1>My Form</h1>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>    
+      <Grid>
+        <form onSubmit={this.handleSubmit}>
+        <Row>
+            <FormGroup
+              controlId="formBasicText"
+              bsClass="form-inline"
+            >
+            <FormControl
+              type="text"
+              value={this.state.value}
+              placeholder="Enter text"
+              onChange={this.handleChange}
+            />
+            <Button type="submit" value="Submit">Search</Button>
+            </FormGroup>
+        </Row>
+        </form>    
+      </Grid>
     </div>
     );
   }

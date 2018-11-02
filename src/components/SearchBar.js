@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Grid, Row, Col, Button, Panel } from 'react-bootstrap';
-import { Formik } from 'formik';
+import './SearchBar.css';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -26,22 +26,24 @@ class SearchBar extends Component {
   render() {
     
     return (
-    <div>
+    <div className="search-bar">
       <Grid>
         <form onSubmit={this.handleSubmit}>
-        <Row>
-            <FormGroup
-              controlId="formBasicText"
-              bsClass="form-inline"
-            >
+        <Row className="d-inline">
+          <FormGroup
+            controlId="formBasicText"
+            bsClass="form-inline"
+          >
             <FormControl
               type="text"
               value={this.state.value}
               placeholder="Enter text"
               onChange={this.handleChange}
             />
-            <Button type="submit" value="Submit">Search</Button>
-            </FormGroup>
+            <Button type="submit" value="Submit" >
+              Search
+            </Button>
+          </FormGroup>
         </Row>
         </form>    
       </Grid>

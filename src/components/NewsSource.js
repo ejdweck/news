@@ -14,7 +14,27 @@ class NewsSource extends Component {
       nytimes: [],
       wsj: [],
       sources: [],
-      sourceOptions: ['cnn', 'fox-news', 'the-wall-street-journal', 'the-new-york-times']
+      sourceOptions: [
+        "cnn",
+        "fox-news",
+        "the-wall-street-journal",
+        "the-new-york-times",
+        "associated-press",
+        "bloomberg",
+        "bbc-news",
+        "cbs-news",
+        "msnbc",
+        "nbc-news",
+        "new-york-magazine",
+        "reuters",
+        "the-economist",
+        "the-guardian-uk",
+        "the-huffington-post",
+        "the-washington-post",
+        "time",
+        "usa-today",
+        "vice-news", 
+      ] 
     };
 
     this.addSelectedSource = this.addSelectedSource.bind(this);
@@ -39,7 +59,6 @@ class NewsSource extends Component {
       Accept: 'application/json',
     }
     fetch(`https://newsapi.org/v2/top-headlines?sources=${encodeURIComponent(urlData.sources)}&q=${encodeURIComponent(urlData.q)}&pageSize=${encodeURIComponent(urlData.pageSize)}&page=${encodeURIComponent(urlData.page)}&publishedAt=${encodeURIComponent(urlData.publishedAt)}&apiKey=${encodeURIComponent(urlData.apiKey)}`, {
-    //fetch(`https://newsapi.org/v2/top-headlines?sources=${encodeURIComponent(urlData.sources)}&q=${encodeURIComponent(urlData.q)}&publishedAt=${encodeURIComponent(urlData.publishedAt)}&apiKey=${encodeURIComponent(urlData.apiKey)}`, {
       method: "GET",
       headers: headers,
     })

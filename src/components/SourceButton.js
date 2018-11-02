@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 
 class SourceButton extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      toggled: false
+      toggled: false,
+      sourceLogo: {
+        "cnn": "cnn.com",
+        "fox-news": 'foxnews.com',
+        "the-wall-street-journal": "wsj.com",
+        "the-new-york-times": "nytimes.com"
+      }
     };
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
@@ -21,9 +27,14 @@ class SourceButton extends Component {
     }));
 	}
   render() {
+    let sourceName = this.props.sourceName;
+    console.log(sourceName)
+    let sourceLogo = this.state.sourceLogo[sourceName];
+    let sourceSrc = "//logo.clearbit.com/" + sourceLogo;
     return (
       <Button active={this.state.toggled} onClick={()=>this.handleClick(this.props.sourceName)}>
         {this.props.sourceName}
+        <Image src={`${sourceSrc}`} circle />
       </Button>
     );
   }

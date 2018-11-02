@@ -14,7 +14,7 @@ class NewsSource extends Component {
       nytimes: [],
       wsj: [],
       sources: [],
-      sourceOptions: ['cnn', 'fox', 'wsj', 'vox']
+      sourceOptions: ['cnn', 'fox-news', 'the-wall-street-journal', 'the-new-york-times']
     };
 
     this.addSelectedSource = this.addSelectedSource.bind(this);

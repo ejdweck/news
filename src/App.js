@@ -1,10 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Jumbotron, Button } from 'react-bootstrap';
-import NewsSource from './components/NewsSource'
+import NewsGrid from './components/NewsGrid'
+import io from 'socket.io-client';
+
+let socket;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.sendArticleQueryToServer = this.sendArticleQueryToServer.bind(this);
+  }
+ 
+  sendArticleQueryToServer = (sources, query) => {
+    let data = {
+      sources: sources,
+      query: query,
+    }
+    console.log('emiting to server')
+    socket.emit('query-news-api', {data: data});
+  }
+
+  componentDidMount() {
+    // connect to web socket
+    socket = io('localhost:8080');
+    socket.on('connect', function(){
+      console.log('connected to server', socket);
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -20,7 +45,7 @@ class App extends Component {
             <Button bsStyle="primary">mission</Button>
           </p>
         </Jumbotron>
-        <NewsSource />
+        <NewsGrid sendArticleQueryToServer={this.sendArticleQueryToServer}/>
       </div>
     );
   }

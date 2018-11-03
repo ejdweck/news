@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Button, Panel, Image } from 'react-bootstrap';
-import './NewsSource.css'
+import { Grid, Row, Col, Panel, Image } from 'react-bootstrap';
+import './NewsGrid.css'
 import SearchBar from './SearchBar';
 import SourceButton from './SourceButton';
 
-class NewsSource extends Component {
+class NewsGrid extends Component {
 
   constructor(props) {
     super(props);
@@ -357,7 +357,11 @@ class NewsSource extends Component {
 
     return (
       <div >
-        <SearchBar getNewsArticles={this.getNewsArticles}/>
+        <SearchBar 
+          getNewsArticles={this.getNewsArticles}
+          sendArticleQueryToServer={this.props.sendArticleQueryToServer}
+          sources={this.state.sources}
+          />
         {sourceButtons}
         <Grid className="container">
           <Row>
@@ -369,4 +373,4 @@ class NewsSource extends Component {
   }
 }
 
-export default NewsSource;
+export default NewsGrid;

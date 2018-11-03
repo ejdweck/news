@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormControl, FormGroup, Grid, Row, Col, Button, Panel } from 'react-bootstrap';
+import { FormControl, FormGroup, Grid, Row, Button } from 'react-bootstrap';
 import './SearchBar.css';
 
 class SearchBar extends Component {
@@ -19,7 +19,8 @@ class SearchBar extends Component {
   handleSubmit(event) {
     //alert('A name was submitted: ' + this.state.value);
     console.log('searrrrching form search input')
-    this.props.getNewsArticles(this.state.value);
+    //this.props.getNewsArticles(this.state.value);
+    this.props.sendArticleQueryToServer(this.props.sources, this.state.value);
     event.preventDefault();
   }
   

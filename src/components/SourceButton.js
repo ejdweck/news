@@ -33,9 +33,9 @@ class SourceButton extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 	handleClick = (source) => {
-    if (this.state.toggled == false) {
+    if (this.state.toggled === false) {
       this.props.addSelectedSource(source);
-    } else if (this.state.toggled == true) {
+    } else if (this.state.toggled === true) {
       this.props.removeSelectedSource(source);
     }
     this.setState(prevState => ({

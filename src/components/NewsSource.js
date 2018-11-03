@@ -9,10 +9,7 @@ class NewsSource extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fox: [],
-      cnn: [],
-      nytimes: [],
-      wsj: [],
+      articles: [],
       sources: [],
       sourceOptions: [
         "cnn",
@@ -34,10 +31,10 @@ class NewsSource extends Component {
         "time",
         "usa-today",
         "vice-news", 
-      ] 
+      ],
     };
-
     this.addSelectedSource = this.addSelectedSource.bind(this);
+    this.removeSelectedSource = this.removeSelectedSource.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +46,7 @@ class NewsSource extends Component {
     const urlData = {
       country: 'us',
       apiKey: 'c477fa4aa1474688a99cb5392449a6fd',
-      sources: 'fox-news, cnn, the-new-york-times, the-wall-street-journal',
+      sources: this.state.sources,
       pageSize: '100',
       page: '1',
       sortBy: 'publishedAt',
@@ -65,33 +62,199 @@ class NewsSource extends Component {
       .then((response) => response.json())
       // set state with data
       .then((responseJson) => {
-        let i;
-        let foxArticles = [];
         let cnnArticles = [];
-        let nytimesArticles = [];
+        let foxArticles = [];
         let wsjArticles = [];
-        console.log(JSON.stringify(responseJson))
+        let nytimesArticles = [];
+        let apArticles = [];
+        let bloombergArticles = [];
+        let bbcArticles = [];
+        let cbsArticles = [];
+        let msnbcArticles = [];
+        let nbcArticles = [];
+        let nymagazineArticles = [];
+        let reutersArticles = [];
+        let economistArticles = [];
+        let huffingtonpostArticles = [];
+        let washingtonpostArticles = [];
+        let timeArticles = [];
+        let usatodayArticles = [];
+        let vicenewsArticles = [];
+        let i;
+        let articles = [];
+        //console.log(JSON.stringify(responseJson))
         for (i = 0; i < responseJson.articles.length; i++) {
           console.log(responseJson.articles[i].source.id)
-          if (responseJson.articles[i].source.id === 'fox-news') {
-            //console.log(responseJson.articles[i].source.id);
-            foxArticles.push(responseJson.articles[i]);
-          } else if (responseJson.articles[i].source.id === 'cnn') {
-            //console.log(responseJson.articles[i].source.id);
+          if (responseJson.articles[i].source.id === 'cnn') {
             cnnArticles.push(responseJson.articles[i]);
-          } else if (responseJson.articles[i].source.id === 'the-new-york-times') {
-            //console.log(responseJson.articles[i].source.id);
-            nytimesArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'fox-news') {
+            foxArticles.push(responseJson.articles[i]);
           } else if (responseJson.articles[i].source.id === 'the-wall-street-journal') {
-            //console.log(responseJson.articles[i].source.id);
             wsjArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'the-new-york-times') {
+            nytimesArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'associated-press') {
+            apArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'bloomberg') {
+            bloombergArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'bbc-news') {
+            bbcArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'cbs-news') {
+            cbsArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'msnbc') {
+            msnbcArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'nbc-news') {
+            nbcArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'new-york-magazine') {
+            nymagazineArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'reuters') {
+            reutersArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'the-economist') {
+            economistArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'the-huffington-post') {
+            huffingtonpostArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'the-washington-post') {
+            washingtonpostArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'time') {
+            timeArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'usa-today') {
+            usatodayArticles.push(responseJson.articles[i]);
+          } else if (responseJson.articles[i].source.id === 'vice-news') {
+            vicenewsArticles.push(responseJson.articles[i]);
           }
         }
+        console.log(cnnArticles.length);
+        if (cnnArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: cnnArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (foxArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: foxArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (wsjArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: wsjArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (nytimesArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: nytimesArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (apArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: apArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (bloombergArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: bloombergArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (bbcArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: bbcArticles
+          };
+          articles.push(articlesObj);
+        }
+
+        if (cbsArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: cbsArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (msnbcArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: msnbcArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (nbcArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: nbcArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (nymagazineArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: nymagazineArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (reutersArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: reutersArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (economistArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: economistArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (huffingtonpostArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: huffingtonpostArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (washingtonpostArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: washingtonpostArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (timeArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: timeArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (usatodayArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: usatodayArticles
+          };
+          articles.push(articlesObj);
+        }
+        if (vicenewsArticles.length > 0) {
+          let articlesObj = {
+            source: '',
+            content: vicenewsArticles
+          };
+          articles.push(articlesObj);
+        }
+        console.log('articlessss')
+        console.log(articles)
         this.setState({
-          fox: foxArticles,
-          cnn: cnnArticles,
-          nytimes: nytimesArticles,
-          wsj: wsjArticles,
+          articles: articles
         }, ()=> console.log(this.state))
       });
   }
@@ -113,6 +276,7 @@ class NewsSource extends Component {
   }
 
   render() {
+    /*
     const cnnArticles = this.state.cnn.map((article) =>
       <Panel className="newsStory" bsStyle="primary" key={article.url}>
         <Panel.Heading>
@@ -160,36 +324,44 @@ class NewsSource extends Component {
           <Panel.Body>{article.description}</Panel.Body>
         </Row>
       </Panel>
-    );
+    ); */
     const sourceButtons = this.state.sourceOptions.map((source) => 
       <SourceButton 
+        key={source}
         sourceName={source}
         addSelectedSource={this.addSelectedSource}
         removeSelectedSource={this.removeSelectedSource}
       />
     );
+    let i;
+    let arrOfCols = [];
+    console.log(this.state.articles.length)
+    for (i = 0; i < this.state.articles.length; i++) {
+      const articleColumn = this.state.articles[i].content.map((article) =>
+        <Panel className="newsStory" bsStyle="warning" key={article.url}>
+          <Panel.Heading>
+            <Panel.Title componentClass="h3">{article.title}</Panel.Title>
+          </Panel.Heading>
+          <Row>
+            <br />
+            <Image className="images" src={article.urlToImage} rounded />
+            <Panel.Body>{article.description}</Panel.Body>
+          </Row>
+        </Panel>
+      );
+      const wCol = <Col md={3}>{articleColumn}</Col>
+      arrOfCols.push(wCol);
+    }
+    console.log(arrOfCols);
+
     return (
       <div >
         <SearchBar getNewsArticles={this.getNewsArticles}/>
         {sourceButtons}
         <Grid className="container">
-          <Col md={3}>
-            <h3>CNN</h3>
-            {cnnArticles}
-          </Col>
-          <Col md={3}>
-            <h3>Fox News</h3>
-            {foxArticles}
-          </Col>
-          <Col md={3}>
-            <h3>The Wall Street Journal</h3>
-            {wsjArticles}
-          </Col>
-          <Col md={3}>
-            <h3>The New York Times</h3>
-            {nytimesArticles}
-          </Col>
-
+          <Row>
+            {arrOfCols}
+          </Row>
         </Grid>
       </div>
     );

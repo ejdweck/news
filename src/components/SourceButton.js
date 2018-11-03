@@ -44,7 +44,6 @@ class SourceButton extends Component {
 	}
   render() {
     let sourceName = this.props.sourceName;
-    console.log(sourceName)
     let sourceLogo = this.state.sourceLogo[sourceName];
     let sourceSrc = "//logo.clearbit.com/" + sourceLogo + '?size=40';
     return (

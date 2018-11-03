@@ -12,6 +12,10 @@ CSS for NewsSource File
     overflow-y: scroll;
 }
 
+.fox-news > .panel-heading {
+    background-color: red!important
+}
+
 .container {
     width: 100%;
     padding-right: 15px;

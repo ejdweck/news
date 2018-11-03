@@ -335,10 +335,11 @@ class NewsSource extends Component {
     );
     let i;
     let arrOfCols = [];
+    let colWidth = 12/this.state.articles.length;
     console.log(this.state.articles.length)
     for (i = 0; i < this.state.articles.length; i++) {
       const articleColumn = this.state.articles[i].content.map((article) =>
-        <Panel className="newsStory" bsStyle="warning" key={article.url}>
+        <Panel className={article.source.id} bsStyle="warning" key={article.url}>
           <Panel.Heading>
             <Panel.Title componentClass="h3">{article.title}</Panel.Title>
           </Panel.Heading>
@@ -349,7 +350,7 @@ class NewsSource extends Component {
           </Row>
         </Panel>
       );
-      const wCol = <Col md={3}>{articleColumn}</Col>
+      const wCol = <Col md={colWidth}>{articleColumn}</Col>
       arrOfCols.push(wCol);
     }
     console.log(arrOfCols);

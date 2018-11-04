@@ -76,14 +76,13 @@ class NewsGrid extends Component {
     for (i = 0; i < this.props.articles.length; i++) {
       const articleColumn = this.props.articles[i].content.map((article) =>
         <Panel className={article.source.id} bsStyle="warning" key={article.url}>
-          <Panel.Heading>
-            <Panel.Title componentClass="h3">{article.title}</Panel.Title>
-          </Panel.Heading>
-          <Row>
-            <br />
+          <Panel.Title componentClass="h3">{article.title}</Panel.Title>
+          <p>{article.score.comparative}</p>
+          < hr/>
+          <div className="wrapper">
             <Image className="images" src={article.urlToImage} rounded />
-            <Panel.Body>{article.description}</Panel.Body>
-          </Row>
+            <Panel.Body >{article.description}</Panel.Body>
+          </div>
         </Panel>
       );
       const wCol = <Col md={colWidth}>{articleColumn}</Col>

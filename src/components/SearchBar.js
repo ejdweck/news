@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { FormControl, FormGroup, Grid, Row, Button } from 'react-bootstrap';
+import { FormControl, FormGroup, Grid, Row, Button, Alert } from 'react-bootstrap';
 import './SearchBar.css';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      showAlert: false
     };
+    // searchbar methods
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // alert methods
+    this.handleDismissAlert = this.handleDismissAlert.bind(this);
   }
 
   handleChange(event) {
@@ -17,17 +21,39 @@ class SearchBar extends Component {
   }
 
   handleSubmit(event) {
-    //alert('A name was submitted: ' + this.state.value);
-    console.log('searrrrching form search input')
-    //this.props.getNewsArticles(this.state.value);
-    this.props.sendArticleQueryToServer(this.props.sources, this.state.value);
+    if (this.props.sources.length > 1 && this.props.sources.length < 6 ) {
+      this.props.sendArticleQueryToServer(this.props.sources, this.state.value);
+    } else {
+      this.setState({
+        showAlert: true
+      });
+    }
     event.preventDefault();
+  }
+
+  handleDismissAlert() {
+    this.setState({ showAlert: false });
   }
   
   render() {
+    let alert = null;
+    if (this.state.showAlert) {
+      alert =(
+        <Alert bsStyle="danger" onDismiss={this.handleDismissAlert}>
+          <h4>Bad number of sources!</h4>
+          <p>
+            Please select between 2 and 5 sources in order to compare different media coverage between issues.
+          </p>
+          <p>
+            <Button onClick={this.handleDismissAlert}>Dismiss</Button>
+          </p>
+        </Alert>
+      )
+    }
     
     return (
     <div className="search-bar">
+      {alert}
       <Grid>
         <form onSubmit={this.handleSubmit}>
         <Row className="d-inline">

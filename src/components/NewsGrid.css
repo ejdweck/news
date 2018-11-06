@@ -19,8 +19,13 @@ CSS for NewsSource File
     font-size: 14px;
 }
 
-.newsStory {
-    overflow-y: scroll;
+.article {
+    background: lightgrey;
+}
+
+.article-headline {
+    margin: 0px;
+    padding: 0px;
 }
 
 .fox-news > .panel-heading {

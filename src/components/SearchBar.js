@@ -16,11 +16,13 @@ class SearchBar extends Component {
     this.handleDismissAlert = this.handleDismissAlert.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  componentDidMount() {
+    setTimeout(()=> {
+      this.sendQuery();
+    }, 100)
   }
 
-  handleSubmit(event) {
+  sendQuery() {
     if (this.props.sources.length > 1 && this.props.sources.length < 6 ) {
       this.props.sendArticleQueryToServer(this.props.sources, this.state.value);
     } else {
@@ -28,6 +30,14 @@ class SearchBar extends Component {
         showAlert: true
       });
     }
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    this.sendQuery();
     event.preventDefault();
   }
 

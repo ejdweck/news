@@ -4,7 +4,7 @@ import { Jumbotron, Button } from 'react-bootstrap';
 import NewsGrid from './components/NewsGrid'
 import io from 'socket.io-client';
 
-let socket;
+let socket = null;
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +26,9 @@ class App extends Component {
     let data = {
       sources: sources,
       query: query,
+    }
+    if(socket == null) {
+      return;
     }
     console.log('emiting to server')
     socket.emit('query-news-api', {content: data});

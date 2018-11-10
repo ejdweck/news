@@ -56,17 +56,19 @@ class SourceButton extends Component {
 
   componentDidMount() {
     let source = this.props.sourceName;
-    console.log('componenting mounting', source)
-    if (source == "cnn") {
+    //console.log('componenting mounting', source)
+    // when component renders, hack to grab 4 sources and add them
+    // to sources list by simulating a real click.
+    if (source === "cnn") {
       this.handleClick(source);
     } 
-    else if (source == "fox-news" ) {
+    else if (source === "fox-news" ) {
       this.handleClick(source);
     }
-    else if (source == "the-new-york-times") {
+    else if (source === "the-new-york-times") {
       this.handleClick(source);
     }
-    else if (source == "the-washington-post") {
+    else if (source === "the-washington-post") {
       this.handleClick(source);
     }
   }
@@ -83,14 +85,21 @@ class SourceButton extends Component {
     this.setState(prevState => ({
       toggled: newToggledState 
     }));
-	}
+  }
+
   render() {
+    // grab the logo from clearbit.com
     let sourceName = this.props.sourceName;
     let sourceLogo = this.state.sourceLogo[sourceName];
     let sourceSrc = "//logo.clearbit.com/" + sourceLogo + "?size=30";
+    // get button state info 
     let toggledState = this.state.toggled[sourceName];
     return (
-      <Button className="source-button" active={toggledState} onClick={()=>this.handleClick(this.props.sourceName)}>
+      <Button 
+        className="source-button"
+        active={toggledState}
+        onClick={()=>this.handleClick(this.props.sourceName)
+        }>
         <Image src={`${sourceSrc}`} rounded />
       </Button>
     );

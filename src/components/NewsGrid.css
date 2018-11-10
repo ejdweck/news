@@ -28,10 +28,6 @@ CSS for NewsSource File
     padding: 0px;
 }
 
-.fox-news > .panel-heading {
-    background-color: red!important
-}
-
 .container {
     width: 100%;
     padding-right: 15px;

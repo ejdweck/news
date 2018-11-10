@@ -23,9 +23,11 @@ class SearchBar extends Component {
   }
 
   sendQuery() {
+    // only allow for query to be sent if user has between 2 to 5 sources selected
     if (this.props.sources.length > 1 && this.props.sources.length < 6 ) {
       this.props.sendArticleQueryToServer(this.props.sources, this.state.value);
     } else {
+      // prompt user w/ error message
       this.setState({
         showAlert: true
       });

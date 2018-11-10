@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel, Image, Well, Label, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Image, Well, Button } from 'react-bootstrap';
 import './NewsGrid.css'
 import SearchBar from './SearchBar';
 import SourceButton from './SourceButton';
@@ -58,11 +58,8 @@ class NewsGrid extends Component {
     this.removeSelectedSource = this.removeSelectedSource.bind(this);
   }
 
-  componentDidMount() {
-    //this.getNewsArticles('pittsburgh');
-    // set interval to poll server 
-  }
-
+  // was mutating state - now using previous state to ensure
+  // everything is okay.
   incrementSource(source) {
     console.log(source);
     return (previousState, currentProps) => {
@@ -73,17 +70,7 @@ class NewsGrid extends Component {
   }
 
   addSelectedSource = (source) => {
-    //console.log('ADDING source', source)
-    //console.log(this.state.sources)
     this.setState(this.incrementSource(source));
-    /*
-    this.setState((previousState, currentProps) => {
-      return { ...previousState, sources: this.state.sources.concat([source]) };
-    }, ()=>console.log(this.state.sources));
-    this.setState({
-      sources: this.state.sources.concat([source])
-    }, ()=>console.log(this.state.sources));
-    */
   }
   
   removeSelectedSource = (source) => {
@@ -97,18 +84,18 @@ class NewsGrid extends Component {
   
   sentimentScoreClassname = (score) => {
     score = parseFloat(score);
-    console.log("SERCOREEEEE, ", score);
-    console.log(typeof score)
+    //console.log("SERCOREEEEE, ", score);
+    //console.log(typeof score)
     let floatZero = parseFloat(0);
 
     if (score > floatZero) {
-      console.log('success');
+      //console.log('success');
       return "success";
-    } else if ( score == floatZero) {
-      console.log('warning');
+    } else if (score === floatZero) {
+      //console.log('warning');
       return "warning";
     } else {
-      console.log('danger');
+      //console.log('danger');
       return "danger";
     }
   }
@@ -127,6 +114,12 @@ class NewsGrid extends Component {
     let arrOfCols = [];
     let colWidth = 12/this.props.articles.length;
     //console.log(this.props.articles.length)
+
+    let coverageName = {
+      'danger': 'Negative Language',
+      'warning': 'Neutral Language',
+      'success': 'Positive Language'
+    }
     // dynamically render all the columns of articles for selected sources
     for (i = 0; i < this.props.articles.length; i++) {
       // get article logo based on source
@@ -138,15 +131,16 @@ class NewsGrid extends Component {
             <Row>
               <Col md={10}>
                 <h5 className="article-headline">{article.title}</h5>
-              </Col>
-              <Col md={2}>
-                <Image src={`${sourceSrc}`} rounded />
                 <Button 
                   bsStyle={this.sentimentScoreClassname(article.score.comparative)}
                   onClick={()=>alert('clickeddd')}
                   >
-                  {this.sentimentScoreClassname(article.score.comparative)}
+                  {coverageName[this.sentimentScoreClassname(article.score.comparative)]}
                 </Button>
+              </Col>
+              <Col md={2}>
+                <Image src={`${sourceSrc}`} rounded />
+                
               </Col>
             </Row>
             <hr />
@@ -162,7 +156,7 @@ class NewsGrid extends Component {
       const wCol = <Col md={colWidth}><h1>{this.props.articles[i].content[0].source.name} </h1> {articleColumn}</Col>
       arrOfCols.push(wCol);
     }
-    console.log(arrOfCols);
+    //console.log(arrOfCols);
 
     return (
       <div >

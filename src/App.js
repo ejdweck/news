@@ -61,7 +61,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Jumbotron>
+        <Jumbotron className="jumbotron">
           <h1>Just a Bite</h1>
           <p>
             News bites from different sites

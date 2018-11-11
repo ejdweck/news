@@ -4,4 +4,10 @@
 
 body {
   font-family: 'Nunito', sans-serif;
+  color: white;
+  background-color: #C0C0C0;
+}
+
+.jumbotron {
+  background-color: #232b2b;
 }

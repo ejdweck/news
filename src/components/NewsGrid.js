@@ -3,6 +3,7 @@ import { Grid, Row, Col, Image, Well, Button } from 'react-bootstrap';
 import './NewsGrid.css'
 import SearchBar from './SearchBar';
 import SourceButton from './SourceButton';
+import Article from './Article';
 
 class NewsGrid extends Component {
 
@@ -81,24 +82,6 @@ class NewsGrid extends Component {
       sources: sourcesArray
     });
   }
-  
-  sentimentScoreClassname = (score) => {
-    score = parseFloat(score);
-    //console.log("SERCOREEEEE, ", score);
-    //console.log(typeof score)
-    let floatZero = parseFloat(0);
-
-    if (score > floatZero) {
-      //console.log('success');
-      return "success";
-    } else if (score === floatZero) {
-      //console.log('warning');
-      return "warning";
-    } else {
-      //console.log('danger');
-      return "danger";
-    }
-  }
 
   render() {
     // render buttons for users to select sources 
@@ -126,34 +109,16 @@ class NewsGrid extends Component {
       let sourceLogo = this.state.sourceLogo[this.props.articles[i].content[0].source.id];
       let sourceSrc = "//logo.clearbit.com/" + sourceLogo + "?size=30";
       const articleColumn = this.props.articles[i].content.map((article) =>
-        <div>
-          <Well className="article">
-            <Row>
-              <Col md={10}>
-                <h3 className="article-headline">{article.title}</h3>
-                <Button 
-                  bsStyle={this.sentimentScoreClassname(article.score.comparative)}
-                  onClick={()=>alert('clickeddd')}
-                  >
-                  {coverageName[this.sentimentScoreClassname(article.score.comparative)]}
-                </Button>
-              </Col>
-              <Col md={2}>
-                <Image src={`${sourceSrc}`} rounded />
-                
-              </Col>
-            </Row>
-            <hr />
-            <div className="wrapper">
-              <Image className="images" src={article.urlToImage} rounded />
-              <p>{article.description}</p>
-            </div>
-            <hr />
-            <p>{article.url}</p>
-          </Well>
-        </div>
+        <Article 
+          title={article.title}
+          score={article.score}
+          sourceSrc={sourceSrc}
+          urlToImage={article.urlToImage}
+          description={article.description}
+          url={article.url}
+        />
       );
-      const wCol = <Col md={colWidth}><h1>{this.props.articles[i].content[0].source.name} </h1> {articleColumn}</Col>
+      const wCol = <Col md={colWidth}><h2 className="column-title">{this.props.articles[i].content[0].source.name}</h2>{articleColumn}</Col>
       arrOfCols.push(wCol);
     }
     //console.log(arrOfCols);

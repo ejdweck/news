@@ -1,0 +1,11 @@
+.article {
+    background: #3b444b;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: black;
+}
+
+.article-headline {
+    margin: 0px;
+    padding: 0px;
+}

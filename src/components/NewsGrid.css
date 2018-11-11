@@ -19,15 +19,6 @@ CSS for NewsSource File
     font-size: 14px;
 }
 
-.article {
-    background: lightgrey;
-}
-
-.article-headline {
-    margin: 0px;
-    padding: 0px;
-}
-
 .container {
     width: 100%;
     padding-right: 15px;
@@ -39,4 +30,8 @@ CSS for NewsSource File
 .row {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+.column-title {
+    color: black;
 }

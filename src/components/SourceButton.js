@@ -91,7 +91,7 @@ class SourceButton extends Component {
     // grab the logo from clearbit.com
     let sourceName = this.props.sourceName;
     let sourceLogo = this.state.sourceLogo[sourceName];
-    let sourceSrc = "//logo.clearbit.com/" + sourceLogo + "?size=30";
+    let sourceSrc = "//logo.clearbit.com/" + sourceLogo + "?size=40";
     // get button state info 
     let toggledState = this.state.toggled[sourceName];
     return (

@@ -130,7 +130,7 @@ class NewsGrid extends Component {
           <Well className="article">
             <Row>
               <Col md={10}>
-                <h5 className="article-headline">{article.title}</h5>
+                <h3 className="article-headline">{article.title}</h3>
                 <Button 
                   bsStyle={this.sentimentScoreClassname(article.score.comparative)}
                   onClick={()=>alert('clickeddd')}

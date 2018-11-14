@@ -3,35 +3,35 @@ CSS for NewsSource File
 */
 
 .images {
-    float: left;
-    width: 120px;
-    shape-margin:20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+  float: left;
+  width: 120px;
+  shape-margin:20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .panel-body {
-    padding: 0px;
-    line-height: 1.6; 
-    font-family: Helvetica;
-    text-align: justify;
-    margin: 0;
-    font-size: 14px;
+  padding: 0px;
+  line-height: 1.6; 
+  font-family: Helvetica;
+  text-align: justify;
+  margin: 0;
+  font-size: 14px;
 }
 
 .container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .row {
-    margin-left: 0px;
-    margin-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .column-title {
-    color: black;
+  color: black;
 }

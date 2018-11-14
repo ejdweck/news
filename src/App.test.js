@@ -64,8 +64,8 @@ describe('SourceButton Component testing...', function() {
 
     const wrapper = shallow(<SourceButton sourceName="bloomberg"/>); 
     const image = <img src="//logo.clearbit.com/bloomberg.com?size=30" className="img-rounded"></img>
-    //expect(wrapper.contains(image)).to.equal(true);
-    expect(wrapper.contains(image));
+    expect(wrapper.find('img')).to.equal(true);
+    //expect(wrapper.contains(image));
   });
 });
 

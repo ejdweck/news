@@ -41,6 +41,7 @@ class Article extends Component {
             <Col md={10}>
               <h3 className="article-headline">{this.props.title}</h3>
               <Button 
+                className="coverage-button"
                 bsStyle={this.sentimentScoreClassname(this.props.score.comparative)}
                 onClick={()=>alert('clickeddd')}
                 >
@@ -54,10 +55,10 @@ class Article extends Component {
           <hr />
           <div className="wrapper">
             <Image className="images" src={this.props.urlToImage} rounded />
-            <p>{this.props.description}</p>
+            <p className="article-description">{this.props.description}</p>
           </div>
           <hr />
-          <p>{this.props.url}</p>
+          <a href={this.props.url}>Read full article</a>
         </Well>
       </div>
     );

@@ -39,7 +39,8 @@ class App extends Component {
     // set interval to poll server for query updates
     let interval = setInterval(() => {
       socket.emit('query-update', {});
-    }, 500);
+    }, 500); // make 10 and will crash w/o server side fix
+
     // when server responds with query finished, stop the polling,
     // and parse the response data and store in state
     socket.on('query-finished', (data) => {

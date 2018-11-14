@@ -3,11 +3,12 @@
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
-  color: white;
-  background-color: #C0C0C0;
+  font-family: 'Old Standard TT', serif;
+
+  background-color: #fffef9;
 }
 
 .jumbotron {
   background-color: #232b2b;
+  color: white;
 }

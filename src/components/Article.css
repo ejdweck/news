@@ -1,11 +1,19 @@
 .article {
-    background: #3b444b;
-    border-radius: 10px;
-    border-width: 2px;
-    border-color: black;
+  background: #D4D4D4;
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: #3C3C3E;
 }
 
 .article-headline {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.article-description {
+  font-size: 18px;
+}
+
+.coverage-button {
+  margin: 10px;
 }

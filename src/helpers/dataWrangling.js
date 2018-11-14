@@ -3,6 +3,7 @@
 // returns an array of arrays 
 export default function wrangleArticleResponse(data) {
     let responseJson = JSON.parse(data);
+    console.log('RESPONSE JSON IS :::::: ', responseJson);
     let cnnArticles = [];
     let foxArticles = [];
     let wsjArticles = [];

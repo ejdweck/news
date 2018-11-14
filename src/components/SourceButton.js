@@ -68,9 +68,6 @@ class SourceButton extends Component {
     else if (source === "the-new-york-times") {
       this.handleClick(source);
     }
-    else if (source === "the-washington-post") {
-      this.handleClick(source);
-    }
   }
 
 	handleClick = (source) => {

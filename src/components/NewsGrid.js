@@ -30,7 +30,7 @@ class NewsGrid extends Component {
         "the-huffington-post",
         "the-washington-post",
         "time",
-        "usa-today",
+        //"usa-today",
         "vice-news", 
       ],
       sourceLogo: {
